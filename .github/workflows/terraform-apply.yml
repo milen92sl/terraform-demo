@@ -15,6 +15,28 @@ env:
 
 
 jobs:
+  terraform-unlock:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      # Setup Terraform (ensure you're using the same version as the rest of your workflow)
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+
+      # Optionally, add steps for authentication with your backend here
+
+      # Force Unlock Terraform State
+      - name: Terraform Force Unlock
+        run: terraform force-unlock 791a7af8-773b-0aaa-d636-abaf06f1e147 --force
+        env:
+          # Your environment variables for authentication with Terraform backend, if required
+          ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+          ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+          ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+
   terraform-plan:
     name: 'Terraform Plan'
     runs-on: ubuntu-latest
