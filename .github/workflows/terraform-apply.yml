@@ -76,4 +76,4 @@ jobs:
 
     # Generates an execution plan for Terraform
     - name: Terraform Apply
-      run: terraform apply -auto-approve tfplan.out -lock=false
+      run: terraform apply -auto-approve tfplan.out
