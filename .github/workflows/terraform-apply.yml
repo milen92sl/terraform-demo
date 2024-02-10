@@ -40,7 +40,7 @@ jobs:
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
-      run: terraform plan -input=false -out=tfplan.out
+      run: terraform plan -input=false -out=tfplan.out -lock=false
 
     - name: Save Terraform Plan
       uses: actions/upload-artifact@v2
