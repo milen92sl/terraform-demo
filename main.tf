@@ -23,7 +23,7 @@ resource "azurerm_resource_group" "rg" {
 }
 
 resource "azurerm_service_plan" "asp" {
-  name                = "${var.app_service_plan_name}-${random_integer.ri.result}"
+  name = "${var.app_service_plan_name}-${random_integer.ri.result}"
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
   os_type             = "Linux"
